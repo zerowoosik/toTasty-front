@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true, // 저장 시 자동 포맷
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Prettier를 기본 포맷터로 지정
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always" // ESLint 자동 고치기 실행
+  },
+  "prettier.singleQuote": true, // ' 사용
+  "prettier.semi": true // 세미콜론 붙이기
+}

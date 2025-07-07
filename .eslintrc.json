@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "airbnb-typescript", "airbnb/hooks"],
+  "extends": ["airbnb", "airbnb-typescript", "airbnb/hooks", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "es2021": true

@@ -11,13 +11,13 @@
 
 ```bash
 views /
-└── home/
-    └── index.tsx     # 홈페이지 UI 컴포넌트
-└── post/
-    └── list/
-        └── index.tsx     # 게시글 목록 페이지 UI 컴포넌트s
-    └── detail/
-        └── index.tsx     # 게시글 상세 페이지 UI 컴포넌트
+└── Home/
+    └── Home.tsx     # 홈페이지 UI 컴포넌트
+└── Post/
+    └── List/
+        └── List.tsx     # 게시글 목록 페이지 UI 컴포넌트s
+    └── Detail/
+        └── Detail.tsx     # 게시글 상세 페이지 UI 컴포넌트
 ```
 
 ## ✍️ 작성 규칙

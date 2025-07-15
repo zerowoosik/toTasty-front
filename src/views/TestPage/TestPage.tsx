@@ -1,5 +1,5 @@
 'use client';
-import { useCountStore } from '@/shared/model/useCountStore';
+import { useCountStore } from '@/shared/lib/hooks/useCountStore';
 import { Button } from '@/shared/ui/button';
 import { useShallow } from 'zustand/shallow';
 

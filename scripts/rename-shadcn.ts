@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { existsSync, readdirSync, renameSync } from 'fs';
+import { readdirSync, renameSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,11 +18,8 @@ readdirSync(uiDir).forEach((file) => {
   const ext = path.extname(file);
   const baseName = path.basename(file, ext);
 
-  let newFileName = baseName.includes('-')
-    ? kebabToPascal(baseName)
-    : /^[a-z]/.test(baseName)
-      ? capitalizeFirst(baseName)
-      : baseName;
+  let newFileName =
+    baseName.includes('-') || /^[a-z]/.test(baseName) ? kebabToPascal(baseName) : baseName;
 
   if (newFileName !== baseName) {
     const oldPath = path.join(uiDir, file);
@@ -30,11 +27,9 @@ readdirSync(uiDir).forEach((file) => {
     const tempPath = path.join(uiDir, `${newFileName}__temp${ext}`);
 
     try {
-      console.log(`✅ Renaming (step 1): ${oldPath} → ${tempPath}`);
       renameSync(oldPath, tempPath);
-
-      console.log(`✅ Renaming (step 2): ${tempPath} → ${newPath}`);
       renameSync(tempPath, newPath);
+      console.log(`✅${newPath.split('/').pop()}`);
     } catch (error) {
       console.error(`❌ Error during renaming:`, error);
     }

@@ -31,12 +31,13 @@ readdirSync(uiDir).forEach((file) => {
       renameSync(tempPath, newPath);
       console.log(`✅ Renamed: ${newPath.split('/').pop()}`);
       let content = readFileSync(newPath, 'utf-8');
-      let updated = false;
+      let removed = false, updated = false;
 
+      const reactImportRegex = /^\s*import\s+\*\s+as\s+React\s+from\s+['"]react['"]\s*\n?/gm;
       const reactImport = `import * as React from "react"`;
       if (content.includes(reactImport)) {
-        content = content.replace(reactImport, '');
-        updated = true;
+        content = content.replace(reactImportRegex, '');
+        removed = true;
         console.log(`🗑️  Remove 'import react': ${newFileName}${ext}`);
       }
 
@@ -44,12 +45,12 @@ readdirSync(uiDir).forEach((file) => {
       content = content.replace(importRegex, (_, quote, name) => {
         const pascal = kebabToPascal(name);
         updated = true;
+        console.log(`🔧 Updated content: ${newFileName}${ext}`);
         return `${quote}@/shared/ui/${pascal}${quote}`;
       });
 
-      if (updated) {
+      if (removed || updated) {
         writeFileSync(newPath, content.trimStart(), 'utf-8');
-        console.log(`🔧 Updated content: ${newFileName}${ext}`);
       }
     } catch (error) {
       console.error(`❌ Error during renaming:`, error);

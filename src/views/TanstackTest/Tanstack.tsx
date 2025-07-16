@@ -7,7 +7,7 @@ export function TanstackView(): string | React.JSX.Element {
 
   if (isPending) return 'Loading...';
 
-  if (error) return 'An error has occurred: ' + error.message;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div>

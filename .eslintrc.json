@@ -3,9 +3,7 @@
   "extends": [
     "airbnb",
     "airbnb-typescript",
-    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "next/core-web-vitals"
   ],
@@ -16,7 +14,6 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "__dirname",
     "sourceType": "module"
   },
   "plugins": [
@@ -32,6 +29,10 @@
   "rules": {
     "prettier/prettier": "error",
     "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       1,

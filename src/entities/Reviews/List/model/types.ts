@@ -12,7 +12,12 @@ interface PageInfo {
   hasNextPage: boolean;
 }
 
-export default interface ReviewList {
+export interface ReviewList {
   contents: ReviewContent[];
   pageInfo: PageInfo;
+}
+
+export enum PageFlag {
+  MYREIVEWS,
+  MEETINGDETAIL,
 }

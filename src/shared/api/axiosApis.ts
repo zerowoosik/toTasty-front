@@ -1,9 +1,9 @@
-import { headers } from 'next/headers';
+import { AxiosResponse } from 'axios';
 import axiosInstance from './axiosInstance';
-import { AxiosRequestHeaders, AxiosResponse } from 'axios';
 
 export async function getApi<T>(
   url: string,
+  params: object = {},
   headers: object = {},
   apiUrl: string | undefined = process.env.NEXT_PUBLIC_API_URL,
 ): Promise<T | null> {
@@ -12,10 +12,10 @@ export async function getApi<T>(
   }
 
   const response: AxiosResponse<T> | null = await axiosInstance(apiUrl)
-    .get<T>(url, { headers })
+    .get<T>(url, { params, headers })
     .then((res) => res)
     .catch((error) => {
-      throw new Error('GET RestAPI Error : ', error);
+      throw new Error(`GET RestAPI Error : ${error}`);
     });
   return response ? response.data : null;
 }
@@ -34,7 +34,7 @@ export async function postApi<T>(
     .post<T>(url, param, { headers })
     .then((res) => res)
     .catch((error) => {
-      throw new Error('POST RestAPI Error : ', error);
+      throw new Error(`GET RestAPI Error : ${error}`);
     });
   return response ? response.data : null;
 }
@@ -53,7 +53,7 @@ export async function putApi<T>(
     .put<T>(url, param, { headers })
     .then((res) => res)
     .catch((error) => {
-      throw new Error('PUT RestAPI Error : ', error);
+      throw new Error(`GET RestAPI Error : ${error}`);
     });
   return response ? response.data : null;
 }
@@ -72,7 +72,7 @@ export async function patchApi<T>(
     .patch<T>(url, param, { headers })
     .then((res) => res)
     .catch((error) => {
-      throw new Error('PATCH RestAPI Error : ', error);
+      throw new Error(`GET RestAPI Error : ${error}`);
     });
   return response ? response.data : null;
 }
@@ -89,7 +89,7 @@ export async function deleteApi<T>(
     .delete<T>(url)
     .then((res) => res)
     .catch((error) => {
-      throw new Error('DELETE RestAPI Error : ', error);
+      throw new Error(`GET RestAPI Error : ${error}`);
     });
   return response ? response.data : null;
 }

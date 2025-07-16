@@ -13,7 +13,7 @@ export function PutTestView(): string | React.JSX.Element {
 
   if (isPending) return 'Loading...';
 
-  if (isError) return 'An error has occurred: ' + error.message;
+  if (isError) return `An error has occurred: ${error.message}`;
 
   if (!data) return 'data not received already';
 

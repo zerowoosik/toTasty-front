@@ -1,59 +1,81 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { readdirSync, readFileSync, renameSync, writeFileSync } from 'fs';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uiDir = path.resolve(__dirname, '../src/shared/ui');
+const SHARED_UI_DIR = path.resolve(__dirname, '../src/shared/ui');
 
-const capitalizeFirst = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+interface FilePaths {
+  oldPath: string;
+  tempPath: string;
+  newPath: string;
+}
+
+const capitalizeFirst = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
+const kebabToPascal = (str: string): string => str.split('-').map(capitalizeFirst).join('');
+
+const getPaths = (baseName: string, ext: string, pascalName: string): FilePaths => ({
+  oldPath: path.join(SHARED_UI_DIR, `${baseName}${ext}`),
+  tempPath: path.join(SHARED_UI_DIR, `${pascalName}__temp${ext}`),
+  newPath: path.join(SHARED_UI_DIR, `${pascalName}${ext}`),
+});
+
+const renameFile = (baseName: string, ext: string, pascalName: string): string | null => {
+  const { oldPath, tempPath, newPath } = getPaths(baseName, ext, pascalName);
+
+  try {
+    fs.renameSync(oldPath, tempPath);
+    fs.renameSync(tempPath, newPath);
+    console.log(`✅ Renamed: ${baseName}${ext} → ${pascalName}${ext}`);
+    return newPath;
+  } catch (error) {
+    console.error(`❌ Rename failed for ${baseName}${ext}:`, error);
+    return null;
+  }
 };
 
-const kebabToPascal = (str: string): string => {
-  return str.split('-').map(capitalizeFirst).join('');
+const removeReactImport = (code: string): [string, boolean] => {
+  const reactImportRegex = /^\s*import\s+\*\s+as\s+React\s+from\s+['"]react['"]\s*\n?/gm;
+  const hasReactImport = reactImportRegex.test(code);
+  if (hasReactImport) {
+    code = code.replace(reactImportRegex, '');
+  }
+  return [code, hasReactImport];
 };
 
-readdirSync(uiDir).forEach((file) => {
+const updateImportPaths = (code: string): [string, boolean] => {
+  const importRegex = /(['"])@\/shared\/ui\/([\w-]+)\1/g;
+  let updated = false;
+  const replaced = code.replace(importRegex, (_, quote, name) => {
+    updated = true;
+    return `${quote}@/shared/ui/${kebabToPascal(name)}${quote}`;
+  });
+  return [replaced, updated];
+};
+
+const updateFileContent = (filePath: string, fileName: string): void => {
+  let content = fs.readFileSync(filePath, 'utf-8');
+  const [withoutReactImport, removed] = removeReactImport(content);
+  const [updatedContent, updated] = updateImportPaths(withoutReactImport);
+
+  if (removed) console.log(`🗑️  Removed React import: ${fileName}`);
+  if (updated) console.log(`🔧 Updated imports in: ${fileName}`);
+  if (updated || removed) {
+    fs.writeFileSync(filePath, updatedContent.trimStart(), 'utf-8');
+  }
+};
+
+fs.readdirSync(SHARED_UI_DIR).forEach((file: string): void => {
   const ext = path.extname(file);
   const baseName = path.basename(file, ext);
 
-  let newFileName =
-    baseName.includes('-') || /^[a-z]/.test(baseName) ? kebabToPascal(baseName) : baseName;
+  if (baseName.includes('-') || /^[a-z]/.test(baseName)) {
+    const pascalName = kebabToPascal(baseName);
+    const renamedFilePath = renameFile(baseName, ext, pascalName);
 
-  if (newFileName !== baseName) {
-    const oldPath = path.join(uiDir, file);
-    const newPath = path.join(uiDir, `${newFileName}${ext}`);
-    const tempPath = path.join(uiDir, `${newFileName}__temp${ext}`);
-
-    try {
-      renameSync(oldPath, tempPath);
-      renameSync(tempPath, newPath);
-      console.log(`✅ Renamed: ${newPath.split('/').pop()}`);
-      let content = readFileSync(newPath, 'utf-8');
-      let removed = false, updated = false;
-
-      const reactImportRegex = /^\s*import\s+\*\s+as\s+React\s+from\s+['"]react['"]\s*\n?/gm;
-      const reactImport = `import * as React from "react"`;
-      if (content.includes(reactImport)) {
-        content = content.replace(reactImportRegex, '');
-        removed = true;
-        console.log(`🗑️  Remove 'import react': ${newFileName}${ext}`);
-      }
-
-      const importRegex = /(['"])@\/shared\/ui\/([\w-]+)\1/g;
-      content = content.replace(importRegex, (_, quote, name) => {
-        const pascal = kebabToPascal(name);
-        updated = true;
-        console.log(`🔧 Updated content: ${newFileName}${ext}`);
-        return `${quote}@/shared/ui/${pascal}${quote}`;
-      });
-
-      if (removed || updated) {
-        writeFileSync(newPath, content.trimStart(), 'utf-8');
-      }
-    } catch (error) {
-      console.error(`❌ Error during renaming:`, error);
+    if (renamedFilePath) {
+      updateFileContent(renamedFilePath, `${pascalName}${ext}`);
     }
   }
 });

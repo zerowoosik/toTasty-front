@@ -1,15 +1,47 @@
 {
-  "extends": ["airbnb", "airbnb-typescript", "airbnb/hooks", "plugin:prettier/recommended"],
+  "root": true,
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "next/core-web-vitals"
+  ],
   "env": {
     "browser": true,
     "es2021": true
   },
-  "ignorePatterns": ["node_modules/"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "sourceType": "module"
   },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "dist/"
+  ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-    "react/react-in-jsx-scope": "off"
+    "prettier/prettier": "error",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ]
   }
 }

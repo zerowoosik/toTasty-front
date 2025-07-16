@@ -1,6 +1,6 @@
 'use client';
 import { useCountStore } from '@/shared/lib/hooks/useCountStore';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/Button';
 import { useShallow } from 'zustand/shallow';
 
 export function TestPage() {

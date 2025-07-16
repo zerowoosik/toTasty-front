@@ -1,9 +1,9 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { fetchTanstack } from '@/features/TanstackTest/api/fetchTanstack';
+import { getTanstack } from '@/entities/TanstackTest/api/getTanstack';
 
 export function useTanstackQuery(): UseQueryResult<any, Error> {
   return useQuery({
     queryKey: ['tanstackRepo'],
-    queryFn: fetchTanstack,
+    queryFn: getTanstack,
   });
 }

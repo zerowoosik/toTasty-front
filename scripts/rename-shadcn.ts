@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const SHARED_UI_DIR = path.resolve(__dirname, '../src/shared/ui');
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const SHARED_UI_DIR = path.resolve(dirname, '../src/shared/ui');
 
 interface FilePaths {
   oldPath: string;
@@ -35,13 +36,18 @@ const renameFile = (baseName: string, ext: string, pascalName: string): string |
   }
 };
 
+const addNewLine = (code: string): string => {
+  return code.replace(/^(\s*['"]use client['"])(;?)(\s*)$/m, (_match, p1) => `${p1};\n`);
+};
+
 const removeReactImport = (code: string): [string, boolean] => {
   const reactImportRegex = /^\s*import\s+\*\s+as\s+React\s+from\s+['"]react['"]\s*\n?/gm;
   const hasReactImport = reactImportRegex.test(code);
+  let updateCode = code;
   if (hasReactImport) {
-    code = code.replace(reactImportRegex, '');
+    updateCode = updateCode.replace(reactImportRegex, '');
   }
-  return [code, hasReactImport];
+  return [updateCode, hasReactImport];
 };
 
 const updateImportPaths = (code: string): [string, boolean] => {
@@ -55,14 +61,15 @@ const updateImportPaths = (code: string): [string, boolean] => {
 };
 
 const updateFileContent = (filePath: string, fileName: string): void => {
-  let content = fs.readFileSync(filePath, 'utf-8');
+  const content = fs.readFileSync(filePath, 'utf-8');
   const [withoutReactImport, removed] = removeReactImport(content);
   const [updatedContent, updated] = updateImportPaths(withoutReactImport);
+  const finalContent = addNewLine(updatedContent);
 
   if (removed) console.log(`🗑️  Removed React import: ${fileName}`);
   if (updated) console.log(`🔧 Updated imports in: ${fileName}`);
-  if (updated || removed) {
-    fs.writeFileSync(filePath, updatedContent.trimStart(), 'utf-8');
+  if (updated || removed || finalContent !== content) {
+    fs.writeFileSync(filePath, finalContent.trimStart(), 'utf-8');
   }
 };
 

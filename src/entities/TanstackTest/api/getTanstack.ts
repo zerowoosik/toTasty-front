@@ -1,6 +1,11 @@
 import { getApi } from '@/shared/api/axiosApis';
-import { TanstackInfo } from '@/entities/TanstackTest/model/types';
+import TanstackInfo from '@/entities/TanstackTest/model/types';
 
 export async function getTanstack(): Promise<TanstackInfo | null> {
-  return getApi<TanstackInfo>('/repos/TanStack/query', {}, 'https://api.github.com');
+  return getApi<TanstackInfo>(
+    '/repos/TanStack/query',
+    { test: 1 },
+    {}, // {Authorization : 'bearer ~~'}
+    'https://api.github.com',
+  );
 }

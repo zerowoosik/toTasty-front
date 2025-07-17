@@ -1,6 +1,5 @@
 import { TestPost } from '@/features/AxiosTest/model/types';
-import { postApi, putApi } from '@/shared/api/axiosApis';
-import { AxiosRequestHeaders } from 'axios';
+import { putApi } from '@/shared/api/axiosApis';
 
 export async function putTest(): Promise<TestPost | null> {
   const post: TestPost = {

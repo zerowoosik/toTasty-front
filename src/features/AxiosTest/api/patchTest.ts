@@ -1,5 +1,5 @@
 import { TestPost } from '@/features/AxiosTest/model/types';
-import { patchApi, postApi } from '@/shared/api/axiosApis';
+import { patchApi } from '@/shared/api/axiosApis';
 
 export async function patchTest(): Promise<TestPost | null> {
   const post: TestPost = {

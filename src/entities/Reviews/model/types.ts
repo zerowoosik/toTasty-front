@@ -1,3 +1,12 @@
+import { TastingInfo } from '@/entities/TastingList/model/types';
+
+export interface ReviewDetailInfo {
+  meetingId: number;
+  reviewRating: number;
+  reviewContent: string;
+  tastingList: TastingInfo[];
+}
+
 interface ReviewContent {
   reviewId: number;
   reviewRating: number;
@@ -12,7 +21,12 @@ interface PageInfo {
   hasNextPage: boolean;
 }
 
-export default interface ReviewList {
+export interface ReviewList {
   contents: ReviewContent[];
   pageInfo: PageInfo;
+}
+
+export enum PageFlag {
+  MYREIVEWS,
+  MEETINGDETAIL,
 }

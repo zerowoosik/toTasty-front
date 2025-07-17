@@ -9,6 +9,8 @@ export function TanstackView(): string | React.JSX.Element {
 
   if (error) return `An error has occurred: ${error.message}`;
 
+  if (!data) return 'data not received already';
+
   return (
     <div>
       <h1>{data.full_name}</h1>

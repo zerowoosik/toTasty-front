@@ -1,6 +1,7 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { postTest } from '../../api/postTest';
+import { TestPost } from '../types';
 
-export function usePostTestMutation(): UseMutationResult<any, Error, void, unknown> {
+export function usePostTestMutation(): UseMutationResult<TestPost | null, Error, void, unknown> {
   return useMutation({ mutationFn: postTest });
 }

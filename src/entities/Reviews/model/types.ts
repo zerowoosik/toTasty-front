@@ -1,3 +1,12 @@
+import { TastingInfo } from '@/entities/TastingList/model/types';
+
+export interface ReviewDetailInfo {
+  meetingId: number;
+  reviewRating: number;
+  reviewContent: string;
+  tastingList: TastingInfo[];
+}
+
 interface ReviewContent {
   reviewId: number;
   reviewRating: number;

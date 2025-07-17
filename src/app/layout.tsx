@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import NavigationBar from '@/widgets/navigation-bar/NavigationBar';
 import { QueryProvider } from './providers/QueryProvider';
 
 const pretendard = localFont({
@@ -23,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${pretendard.variable} font-pretendard antialiased`}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <NavigationBar />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

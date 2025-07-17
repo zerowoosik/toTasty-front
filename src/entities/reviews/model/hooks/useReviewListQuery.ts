@@ -1,15 +1,9 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getReviewList } from '../../api/getReviewList';
-import { ReviewList } from '../types';
+import { ReviewList, ReviewFilters } from '../types';
+import reviewKeys from '../review.keys';
 
-export function useReviewListQuery(
-  page: number,
-  size: number,
-  pageFlag: number,
-  meetingId?: number,
+export default function useReviewListQuery(
+  filter: ReviewFilters,
 ): UseQueryResult<ReviewList | null, Error> {
-  return useQuery({
-    queryKey: ['review-list'],
-    queryFn: () => getReviewList(page, size, pageFlag, meetingId),
-  });
+  return useQuery(reviewKeys.list(filter));
 }

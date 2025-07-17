@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/Button';
 import Image from 'next/image';
 import { useLoginWithKakao } from '../model/useLoginWithKakao';
 

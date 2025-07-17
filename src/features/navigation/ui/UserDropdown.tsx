@@ -1,5 +1,9 @@
-import { useUserStore } from '@/shared/index';
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared/index';
+import {
+  useUserStore,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+} from '@/shared/index';
 import Link from 'next/link';
 import router from 'next/router';
 

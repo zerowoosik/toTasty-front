@@ -20,6 +20,11 @@ features/
     └── index.ts      # 외부로 노출할 모듈을 export (Public API)
 ```
 
+## 폴더 및 파일명 규칙
+
+- **폴더** : 폴더 이름은 kebab case로 작성한다.
+- **파일** : 파일 이름은 .tsx 와 같은 컴포넌트 단위인 경우 Pascal case로 작성하고, .ts와 같은 기능 단위는 camel case로 작성한다.
+
 ## ✍️ 작성 규칙
 
 - **기능 중심**: 폴더 이름은 "무엇을 하는가"를 명확히 나타내야 합니다. (e.g., `add-to-cart`, `auth-by-email`)

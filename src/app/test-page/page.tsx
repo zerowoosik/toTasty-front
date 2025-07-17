@@ -1,9 +1,9 @@
-import { TestPage } from '@/views/TestPage/TestPage';
-import { TanstackView } from '@/views/TanstackTest/Tanstack';
-import { PostTestView } from '@/views/AxiosApiTest/PostTest';
-import { PatchTestView } from '@/views/AxiosApiTest/PatchTest';
-import { PutTestView } from '@/views/AxiosApiTest/PutTest';
-import { DeleteTestView } from '@/views/AxiosApiTest/DeleteTest';
+import { TestPage } from '@/views/test-page/TestPage';
+import { TanstackView } from '@/views/tanstack-test/Tanstack';
+import { PostTestView } from '@/views/axios-api-test/PostTest';
+import { PatchTestView } from '@/views/axios-api-test/PatchTest';
+import { PutTestView } from '@/views/axios-api-test/PutTest';
+import { DeleteTestView } from '@/views/axios-api-test/DeleteTest';
 
 export default function Page(): React.JSX.Element {
   return (

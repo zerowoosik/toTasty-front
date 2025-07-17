@@ -11,14 +11,19 @@
 
 ```bash
 views /
-└── Home/
+└── home/
     └── Home.tsx     # 홈페이지 UI 컴포넌트
-└── Post/
-    └── List/
+└── post/
+    └── list/
         └── List.tsx     # 게시글 목록 페이지 UI 컴포넌트s
-    └── Detail/
+    └── detail/
         └── Detail.tsx     # 게시글 상세 페이지 UI 컴포넌트
 ```
+
+## 폴더 및 파일명 규칙
+
+- **폴더** : 폴더 이름은 kebab case로 작성한다.
+- **파일** : 파일 이름은 .tsx 와 같은 컴포넌트 단위인 경우 Pascal case로 작성하고, .ts와 같은 기능 단위는 camel case로 작성한다.
 
 ## ✍️ 작성 규칙
 

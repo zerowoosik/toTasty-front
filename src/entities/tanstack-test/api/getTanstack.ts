@@ -1,5 +1,5 @@
 import { getApi } from '@/shared/api/axiosApis';
-import TanstackInfo from '@/entities/TanstackTest/model/types';
+import TanstackInfo from '@/entities/tanstack-test/model/types';
 
 export async function getTanstack(): Promise<TanstackInfo | null> {
   return getApi<TanstackInfo>(

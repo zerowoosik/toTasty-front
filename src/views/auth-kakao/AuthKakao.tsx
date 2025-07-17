@@ -6,24 +6,19 @@ import { useLoginWithKakaoMutation } from '@/features/login-with-kakao/model/use
 
 export default function AuthKakao() {
   const searchParams = useSearchParams();
-  const code = searchParams.get('code');
+  const kakaoAuthCode = searchParams.get('code');
   const { mutate } = useLoginWithKakaoMutation();
   const router = useRouter();
 
   useEffect(() => {
-    if (code === null) {
-      console.log('카카오 인가 코드 없음');
-      return;
-    }
+    if (kakaoAuthCode === null) return;
 
-    console.log('API 요청 시작');
-    mutate(code, {
+    mutate(kakaoAuthCode, {
       onSuccess: () => {
-        console.log('API 요청 성공');
         router.replace('/');
       },
     });
-  }, [code, mutate, router]);
+  }, [kakaoAuthCode, mutate, router]);
 
   return (
     <div>

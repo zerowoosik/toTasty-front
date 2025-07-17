@@ -1,6 +1,6 @@
-import { deleteApi } from '@/shared/api/axiosApis';
+import { deleteApi } from '@/shared/index';
 import { ReviewSucceedInfo } from '../model/types';
 
-export async function deleteReview(reviewId: number): Promise<ReviewSucceedInfo | null> {
+export default async function deleteReview(reviewId: number): Promise<ReviewSucceedInfo | null> {
   return deleteApi<ReviewSucceedInfo>(`/posts/${reviewId}`);
 }

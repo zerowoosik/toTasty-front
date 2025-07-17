@@ -1,6 +1,6 @@
 'use client';
 
-import { usePatchTestMutation } from '@/features/axios-test/model/hooks/usePatchTestMutation';
+import { usePatchTestMutation } from '@/features/axios-test/index';
 import { useEffect } from 'react';
 
 export function PatchTestView(): string | React.JSX.Element {

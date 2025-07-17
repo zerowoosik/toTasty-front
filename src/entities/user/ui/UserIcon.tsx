@@ -1,5 +1,5 @@
-import { Button } from '@/shared/ui';
-import { useUserStore } from '@/shared/lib/hooks/useUserStore';
+import { Button } from '@/shared/index';
+import { useUserStore } from '@/shared/index';
 import { useShallow } from 'zustand/shallow';
 import Image from 'next/image';
 

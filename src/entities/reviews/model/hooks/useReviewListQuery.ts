@@ -1,8 +1,8 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getReviewList } from '../../api/getReviewList';
 import { ReviewList } from '../types';
+import getReviewList from '../../api/getReviewList';
 
-export function useReviewListQuery(
+export default function useReviewListQuery(
   page: number,
   size: number,
   pageFlag: number,

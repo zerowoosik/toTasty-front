@@ -12,10 +12,14 @@
 ```bash
 shared/
 ├── api/          # Axios 인스턴스, 공통 API 요청 로직
+    └── index.ts      # 각 모듈을 export
 ├── config/       # 환경 변수, 라우팅 경로 상수 등 전역 설정
+    └── index.ts      # 각 모듈을 export
 ├── lib/          # 순수 헬퍼 함수, 커스텀 훅 (e.g., cn, formatDate, useDebounce)
+    └── index.ts      # 각 모듈을 export
 ├── ui/           # 원자적인 UI 컴포넌트 (Button, Input, Modal, Spinner...)
-└── index.ts      # 각 모듈을 export
+    └── index.ts      # 각 모듈을 export
+└── index.ts      # 각 모듈을 asterisk (*) 을 이용하여 export
 ```
 
 ## 폴더 및 파일명 규칙

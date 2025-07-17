@@ -13,7 +13,7 @@
 widgets/
     └── header/
         └── ui/           # Header 컴포넌트 (Header.tsx)
-            └── index.ts      # 외부로 노출할 모듈을 export
+        └── index.ts      # 외부로 노출할 모듈을 export
 ```
 
 ## 폴더 및 파일명 규칙

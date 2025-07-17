@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useUserStore } from '../model/userStore';
 
 export function UserAvatar() {
@@ -6,10 +7,12 @@ export function UserAvatar() {
   if (!user) return null;
 
   return (
-    <img
+    <Image
       src={user.profileImg}
       alt={`${user.nickname}의 프로필`}
-      className="rounded-full w-10 h-10"
+      width={40}
+      height={40}
+      className="rounded-full"
     />
   );
 }

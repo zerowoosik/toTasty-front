@@ -1,5 +1,6 @@
 'use client';
 
+import { kakaoLogin } from '@/features/login-with-kakao/model/kakaoLogin';
 import SocialLoginButton from '@/features/login-with-kakao/ui/KakaoLoginButton';
 
 export default function LoginPage() {
@@ -10,8 +11,13 @@ export default function LoginPage() {
         <SocialLoginButton />
         <p className="text-sm font-medium">
           ToTasty!가 처음이신가요?
-          <a className="text-[#7467FF] underline cursor-pointer pl-1">카카오로 회원가입</a>
-          {/* 내부 라우팅이 아니라 외부로 이동하는거라 a태그 사용*/}
+          <button
+            type="button"
+            className="text-[#7467FF] underline cursor-pointer pl-1"
+            onClick={kakaoLogin}
+          >
+            카카오로 회원가입
+          </button>
         </p>
       </div>
     </main>

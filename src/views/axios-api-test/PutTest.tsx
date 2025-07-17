@@ -1,10 +1,10 @@
 'use client';
 
-import { usePostTestMutation } from '@/features/AxiosTest/model/hooks/usePostTestMutation';
+import { usePutTestMutation } from '@/features/axios-test/model/hooks/usePutTestMutation';
 import { useEffect } from 'react';
 
-export function PostTestView(): string | React.JSX.Element {
-  const { mutate, data, isPending, isError, error } = usePostTestMutation();
+export function PutTestView(): string | React.JSX.Element {
+  const { mutate, data, isPending, isError, error } = usePutTestMutation();
 
   useEffect(() => {
     mutate();

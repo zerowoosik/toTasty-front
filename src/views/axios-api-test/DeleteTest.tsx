@@ -1,6 +1,6 @@
 'use client';
 
-import { useDeleteTestMutation } from '@/features/AxiosTest/model/hooks/useDeleteTestMutation';
+import { useDeleteTestMutation } from '@/features/axios-test/model/hooks/useDeleteTestMutation';
 import { useEffect } from 'react';
 
 export function DeleteTestView(): string | React.JSX.Element {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTanstackQuery } from '@/entities/TanstackTest/model/hooks/useTanstackQuery';
+import { useTanstackQuery } from '@/entities/tanstack-test/model/hooks/useTanstackQuery';
 
 export function TanstackView(): string | React.JSX.Element {
   const { isPending, error, data, isFetching } = useTanstackQuery();

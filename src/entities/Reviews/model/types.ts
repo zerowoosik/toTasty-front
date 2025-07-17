@@ -1,4 +1,4 @@
-import { TastingInfo } from '@/entities/TastingList/model/types';
+import { TastingInfo } from '@/entities/tasting-list/model/types';
 
 export interface ReviewDetailInfo {
   meetingId: number;

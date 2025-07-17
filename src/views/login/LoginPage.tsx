@@ -1,11 +1,8 @@
 'use client';
 
-import { useLoginWithKakao } from '@/features/LoginWithKakao/model/useLoginWithKakao';
-import SocialLoginButton from '@/features/LoginWithKakao/ui/KakaoLoginButton';
+import SocialLoginButton from '@/features/login-with-kakao/ui/KakaoLoginButton';
 
 export default function LoginPage() {
-  const { handleLogin } = useLoginWithKakao();
-
   return (
     <main className="flex items-center justify-center flex-col min-h-screen bg-[#FBFBFD] ">
       <div className="flex gap-6 items-center justify-center flex-col w-120 h-50 bg-white shadow-xs rounded-xl">
@@ -13,9 +10,7 @@ export default function LoginPage() {
         <SocialLoginButton />
         <p className="text-sm font-medium">
           ToTasty!가 처음이신가요?
-          <a onClick={handleLogin} className="text-[#7467FF] underline cursor-pointer pl-1">
-            카카오로 회원가입
-          </a>
+          <a className="text-[#7467FF] underline cursor-pointer pl-1">카카오로 회원가입</a>
           {/* 내부 라우팅이 아니라 외부로 이동하는거라 a태그 사용*/}
         </p>
       </div>

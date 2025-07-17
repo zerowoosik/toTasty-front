@@ -1,5 +1,3 @@
-// zustand로 로그인 유저 상태 관리
-
 import { create } from 'zustand';
 import { User } from './user';
 
@@ -15,5 +13,4 @@ function createUserStore() {
   }));
 }
 
-const useUserStore = createUserStore();
-export { useUserStore };
+export const useUserStore = createUserStore();

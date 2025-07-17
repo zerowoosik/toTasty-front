@@ -1,4 +1,4 @@
-import AuthKakao from '@/views/AuthKakao/AuthKakao';
+import AuthKakao from '@/views/auth-kakao/AuthKakao';
 
 export default function KakaoCallbackPage() {
   return <AuthKakao />;

@@ -3,7 +3,7 @@
 import { usePatchTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
-export function PatchTestView(): string | React.JSX.Element {
+export default function PatchTestView(): string | React.JSX.Element {
   const { mutate, data, isPending, isError, error } = usePatchTestMutation();
 
   useEffect(() => {

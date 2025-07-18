@@ -3,7 +3,7 @@
 import { usePostTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
-export function PostTestView(): string | React.JSX.Element {
+export default function PostTestView(): string | React.JSX.Element {
   const { mutate, data, isPending, isError, error } = usePostTestMutation();
 
   useEffect(() => {

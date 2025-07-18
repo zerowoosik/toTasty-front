@@ -10,7 +10,7 @@ export default function usePostReivewMutation(
   return useMutation({
     mutationFn: () => postReview(post),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: reviewKeys._def });
+      queryClient.invalidateQueries({ queryKey: reviewKeys.all.queryKey });
     },
   });
 }

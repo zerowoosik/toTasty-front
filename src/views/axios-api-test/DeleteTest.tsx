@@ -4,7 +4,7 @@ import { useDeleteTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
 export default function DeleteTestView(): string | React.JSX.Element {
-  const { mutate, data, isPending, isError, error } = useDeleteTestMutation();
+  const { mutate, data, isPending, isError, error } = useDeleteTestMutation(1);
 
   useEffect(() => {
     mutate();

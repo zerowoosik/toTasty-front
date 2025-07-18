@@ -4,7 +4,7 @@ import { usePutTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
 export default function PutTestView(): string | React.JSX.Element {
-  const { mutate, data, isPending, isError, error } = usePutTestMutation();
+  const { mutate, data, isPending, isError, error } = usePutTestMutation(1);
 
   useEffect(() => {
     mutate();

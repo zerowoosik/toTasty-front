@@ -1,5 +1,4 @@
-import { useUserStore } from '@/shared/lib/hooks/useUserStore';
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared/ui';
+import { useUserStore, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
 import Link from 'next/link';
 import router from 'next/router';
 

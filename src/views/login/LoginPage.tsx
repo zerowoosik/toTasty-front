@@ -1,7 +1,7 @@
 'use client';
 
 import { kakaoLogin } from '@/features/login-with-kakao/model/kakaoLogin';
-import SocialLoginButton from '@/features/login-with-kakao/ui/KakaoLoginButton';
+import { SocialLoginButton } from '@/features/login-with-kakao';
 
 export default function LoginPage() {
   return (

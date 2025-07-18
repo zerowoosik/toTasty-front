@@ -1,6 +1,6 @@
 'use client';
 
-import { usePutTestMutation } from '@/features/axios-test/model/hooks/usePutTestMutation';
+import { usePutTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
 export function PutTestView(): string | React.JSX.Element {

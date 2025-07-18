@@ -14,20 +14,21 @@ interface PageInfo {
   hasNextPage: boolean;
 }
 
-export enum PageFlag {
-  MYREIVEWS,
-  MEETINGDETAIL,
-}
-
 export interface ReviewDetailInfo {
   meetingId: number;
   reviewRating: number;
   reviewContent: string;
   tastingList: TastingInfo[];
 }
+
 export interface ReviewList {
   contents: ReviewContent[];
   pageInfo: PageInfo;
+}
+
+export enum PageFlag {
+  MYREIVEWS,
+  MEETINGDETAIL,
 }
 
 export interface ReviewFilters {

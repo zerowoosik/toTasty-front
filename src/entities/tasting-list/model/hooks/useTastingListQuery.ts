@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import getTastingList from '@/entities/tasting-list/api/getTastingList';
 import { TastingList } from '../types';
+import getTastingList from '../../api/getTastingList';
 
 export default function useTastingListQuery(
   meetingId: number,

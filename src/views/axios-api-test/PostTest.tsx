@@ -1,6 +1,6 @@
 'use client';
 
-import { usePostTestMutation } from '@/features/axios-test/index';
+import { usePostTestMutation } from '@/features/axios-test';
 import { useEffect } from 'react';
 
 export function PostTestView(): string | React.JSX.Element {

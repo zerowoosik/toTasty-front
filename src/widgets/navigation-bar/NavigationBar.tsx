@@ -1,9 +1,9 @@
 'use client';
 
-import { NavigationMenu, DropdownMenu, Logo, DropdownMenuTrigger } from '@/shared/index';
+import { NavigationMenu, DropdownMenu, Logo, DropdownMenuTrigger } from '@/shared';
 import { UserIcon } from '@/entities/user/ui';
-import { LoginButton, NavigationTabs, UserDropdown } from '@/features/navigation/index';
-// import { useUserStore } from '@/shared/indexf';
+import { LoginButton, NavigationTabs, UserDropdown } from '@/features/navigation';
+// import { useUserStore } from '@/shared';
 // import { useShallow } from 'zustand/shallow';
 
 export default function NavigationBar() {

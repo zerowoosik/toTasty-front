@@ -1,4 +1,4 @@
-import { Button, useUserStore } from '@/shared/index';
+import { Button, useUserStore } from '@/shared/';
 import { useShallow } from 'zustand/shallow';
 import Image from 'next/image';
 

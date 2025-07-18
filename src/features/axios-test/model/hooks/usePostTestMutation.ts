@@ -1,7 +1,7 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+import getPostTestKeys from '@/entities/axios-test/model/getPostTest.keys';
 import { postTest } from '../../api/postTest';
 import TestPost from '../types';
-import getPostTestKeys from '@/entities/axios-test/model/getPostTest.keys';
 
 export default function usePostTestMutation(): UseMutationResult<
   TestPost | null,

@@ -4,6 +4,7 @@ import getReviewList from '../api/getReviewList';
 import getReviewDetail from '../api/getReviewDetail';
 
 const reviewKeys = createQueryKeys('reviews', {
+  all: null,
   list: (filter: ReviewFilters) => ({
     queryKey: [filter],
     queryFn: () => getReviewList(filter),

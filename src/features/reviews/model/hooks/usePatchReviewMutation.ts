@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import { PostReviewInfo, ReviewSucceedInfo } from '../types';
 import reviewKeys from '@/entities/reviews/model/review.keys';
+import { PostReviewInfo, ReviewSucceedInfo } from '../types';
 import patchReview from '../../api/patchReview';
 
 export default function usePatchReivewMutation(

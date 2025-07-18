@@ -1,7 +1,7 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
+import reviewKeys from '@/entities/reviews/model/review.keys';
 import { PostReviewInfo, ReviewSucceedInfo } from '../types';
 import postReview from '../../api/postReview';
-import reviewKeys from '@/entities/reviews/model/review.keys';
 
 export default function usePostReivewMutation(
   post: PostReviewInfo,

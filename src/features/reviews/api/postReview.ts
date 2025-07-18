@@ -6,5 +6,5 @@ export default async function postReview(post: PostReviewInfo): Promise<ReviewSu
     'Content-Type': 'application/json; charset=utf-8',
   };
 
-  return postApi<ReviewSucceedInfo>('/posts', post, headers);
+  return postApi<ReviewSucceedInfo>('/api/v1/posts', post, headers);
 }

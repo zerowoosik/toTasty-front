@@ -9,5 +9,5 @@ export default async function patchReview(
     'Content-Type': 'application/json; charset=utf-8',
   };
 
-  return patchApi<ReviewSucceedInfo>(`/posts/${reviewId}`, post, headers);
+  return patchApi<ReviewSucceedInfo>(`/api/v1/posts/${reviewId}`, post, headers);
 }

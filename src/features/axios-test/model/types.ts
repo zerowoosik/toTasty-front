@@ -1,4 +1,4 @@
-export interface TestPost {
+export default interface TestPost {
   title?: string;
   body?: string;
   userId?: number;

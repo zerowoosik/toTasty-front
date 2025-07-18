@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/ui/Button';
 import Image from 'next/image';
-import { kakaoLogin } from '@/features/login-with-kakao/model/kakaoLogin';
+import { kakaoLogin } from '../model/kakaoLogin';
 
 export default function SocialLoginButton() {
   return (

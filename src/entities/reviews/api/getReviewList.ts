@@ -1,7 +1,7 @@
 import { getApi } from '@/shared/api/axiosApis';
 import { ReviewList } from '../model/types';
 
-export async function getReviewList(
+export default async function getReviewList(
   page: number,
   size: number,
   pageFlag: number,

@@ -1,7 +1,7 @@
 import { postApi } from '@/shared/api/axiosApis';
 import { PostReviewInfo, ReviewSucceedInfo } from '../model/types';
 
-export async function postReview(post: PostReviewInfo): Promise<ReviewSucceedInfo | null> {
+export default async function postReview(post: PostReviewInfo): Promise<ReviewSucceedInfo | null> {
   const headers = {
     'Content-Type': 'application/json; charset=utf-8',
   };

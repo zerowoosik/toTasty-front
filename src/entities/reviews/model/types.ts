@@ -1,12 +1,5 @@
 import { TastingInfo } from '@/entities/tasting-list/model/types';
 
-export interface ReviewDetailInfo {
-  meetingId: number;
-  reviewRating: number;
-  reviewContent: string;
-  tastingList: TastingInfo[];
-}
-
 interface ReviewContent {
   reviewId: number;
   reviewRating: number;
@@ -19,6 +12,13 @@ interface PageInfo {
   totalPages: number;
   totalElements: number;
   hasNextPage: boolean;
+}
+
+export interface ReviewDetailInfo {
+  meetingId: number;
+  reviewRating: number;
+  reviewContent: string;
+  tastingList: TastingInfo[];
 }
 
 export interface ReviewList {

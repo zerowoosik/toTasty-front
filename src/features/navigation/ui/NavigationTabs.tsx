@@ -3,11 +3,7 @@
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import Link from 'next/link';
-import {
-  NavigationMenuList,
-  NavigationMenuLink,
-  NavigationMenuItem,
-} from '@/shared/ui/NavigationMenu';
+import { NavigationMenuList, NavigationMenuLink, NavigationMenuItem } from '@/shared';
 
 export default function NavigationTabs() {
   const pathname = usePathname();

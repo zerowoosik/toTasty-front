@@ -1,4 +1,5 @@
-import { useUserStore, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
+import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
+import { useUserStore } from '@/entities/user';
 import Link from 'next/link';
 import router from 'next/router';
 

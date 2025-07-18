@@ -1,3 +1,3 @@
-export * from './model/userStore';
-export * from './model/user';
-export * from './ui/UserAvatar';
+export type { User } from './model/types';
+export { default as useUserStore } from './model/hooks/useUserStore';
+export { default as UserIcon } from './ui/UserIcon';

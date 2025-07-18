@@ -30,3 +30,10 @@ export enum PageFlag {
   MYREIVEWS,
   MEETINGDETAIL,
 }
+
+export interface ReviewFilters {
+  page: number;
+  size: number;
+  pageFlag: number;
+  meetingId?: number;
+}

@@ -1,7 +1,7 @@
 import { putApi } from '@/shared/api/axiosApis';
 import TestPost from '../model/types';
 
-export async function putTest(): Promise<TestPost | null> {
+export async function putTest(postId: number): Promise<TestPost | null> {
   const post: TestPost = {
     title: '바뀐제목이야',
     body: '바뀐테스트내용이겠지?',
@@ -13,5 +13,10 @@ export async function putTest(): Promise<TestPost | null> {
     'Content-Type': 'application/json; charset=utf-8',
   };
 
-  return putApi<TestPost>('/posts/1', post, headers, 'https://jsonplaceholder.typicode.com/');
+  return putApi<TestPost>(
+    `/posts/${postId}`,
+    post,
+    headers,
+    'https://jsonplaceholder.typicode.com/',
+  );
 }

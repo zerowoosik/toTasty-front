@@ -1,6 +1,6 @@
 import { Button } from '@/shared';
 import Image from 'next/image';
-import useUserStore from '../model/hooks/useUserStore';
+import { useUserStore } from '@/entities/user';
 
 export default function UserIcon() {
   const user = useUserStore((state) => state.user);

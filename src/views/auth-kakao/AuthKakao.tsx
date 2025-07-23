@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useLoginWithKakaoMutation } from '@/features/login-with-kakao/model/useLoginWithKakaoMutation';
+import { useLoginWithKakaoMutation } from '@/features/login-with-kakao/model/hooks/useLoginWithKakaoMutation';
 
 export default function AuthKakao() {
   const searchParams = useSearchParams();
@@ -20,9 +20,5 @@ export default function AuthKakao() {
     });
   }, [kakaoAuthCode, mutate, router]);
 
-  return (
-    <div>
-      <p className="text-center mt-20">카카오 로그인 처리 중...</p>
-    </div>
-  );
+  return <p className="text-center mt-20">카카오 로그인 처리 중...</p>;
 }

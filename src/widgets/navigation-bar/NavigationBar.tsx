@@ -1,9 +1,9 @@
 'use client';
 
 import { Logo, NavigationMenu, DropdownMenu, DropdownMenuTrigger } from '@/shared';
-import { NavigationTabs, LoginButton, UserDropdown, UserIcon } from './ui';
 import { useUserStore } from '@/entities/user';
 import { useShallow } from 'zustand/shallow';
+import { NavigationTabs, LoginButton, UserDropdown, UserIcon } from './ui';
 
 export default function NavigationBar() {
   const { isLoggedIn } = useUserStore(

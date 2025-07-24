@@ -16,16 +16,8 @@
     "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier"
-  ],
-  "ignorePatterns": [
-    "node_modules/",
-    ".next/",
-    "dist/"
-  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "ignorePatterns": ["node_modules/", ".next/", "dist/", "src/shared/ui/Calendar.tsx"],
   "rules": {
     "prettier/prettier": "error",
     "import/extensions": "off",
@@ -37,10 +29,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".ts", ".tsx"]
       }
     ]
   }

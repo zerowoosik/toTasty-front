@@ -9,7 +9,7 @@ export default function NavigationTabs() {
   const pathname = usePathname();
   const navigationMenuItems = [
     // TODO : href url 변경
-    { title: '모임찾기', href: '/test-page' },
+    { title: '모임찾기', href: '/find-meeting' },
     { title: '찜한모임', href: '/wishlist' },
     { title: '나의 테이스팅', href: '/my-tasting' },
   ];

@@ -1,0 +1,39 @@
+name: main
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual sync'
+        required: false
+        default: 'Manual trigger from UI'
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout release repo
+        uses: actions/checkout@v4
+
+      - name: Set up git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+
+      - name: Add upstream remote and pull deploy/#111-테스트용-브랜치 branch
+        run: |
+          git remote add upstream https://github.com/to-tasty/toTasty-front.git
+          git pull upstream deploy/#111-테스트용-브랜치
+          git push origin
+
+      - name: Cleanup workflows except sync workflow
+        run: |
+          find .github/workflows -type f ! -name "main.yml" -delete
+
+      - name: Commit workflow file cleanup
+        run: |
+          git diff --quiet || (git add .github/workflows && git commit -m "🧹 Cleanup upstream workflows")
+
+      - name: Push to personal deploy/#111-테스트용-브랜치
+        run: |
+          git push origin deploy/#111-테스트용-브랜치

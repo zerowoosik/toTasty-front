@@ -7,7 +7,6 @@ on:
         description: 'Reason for manual sync'
         required: false
         default: 'Manual trigger from UI'
-
 jobs:
   sync:
     runs-on: ubuntu-latest

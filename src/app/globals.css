@@ -40,11 +40,62 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Custom */
+  --color-gray-010: #fbfbfd;
+  --color-gray-020: #e3e7eb;
+  --color-gray-030: #b2bbc6;
+  --color-gray-040: #788799;
+  --color-gray-050: #43546a;
+  --color-gray-060: #2c3e54;
+  --color-gray-070: #233142;
+  --color-gray-080: #1b232d;
+  --color-gray-090: #10161c;
+
+  --color-primary: #676dff;
+  --color-primary-005: #f3f4ff;
+  --color-primary-010: #e9eaff;
+  --color-primary-020: #c8cbfd;
+  --color-primary-030: #9095ff;
+  --color-primary-040: var(--color-primary);
+  --color-primary-050: #4b51ed;
+  --color-primary-060: #262ca3;
+  --color-primary-070: #161c80;
+  --color-primary-080: #0b0e44;
+  --color-primary-090: #03052f;
+
+  --color-sub-gradient-left: #431be4;
+  --color-sub-gradient-right: #fd98ff;
+
+  --color-danger: #f1351c;
+
+  --font-pretendard: var(--font-pretendard);
+
+  --font-size-xs: 12px;
+  --font-size-xs-line: 16px;
+  --font-size-sm: 14px;
+  --font-size-sm-line: 20px;
+  --font-size-base: 16px;
+  --font-size-base-line: 24px;
+  --font-size-lg: 18px;
+  --font-size-lg-line: 28px;
+  --font-size-xl: 20px;
+  --font-size-xl-line: 28px;
+  --font-size-2xl: 24px;
+  --font-size-2xl-line: 32px;
+  --font-size-3xl: 30px;
+  --font-size-3xl-line: 36px;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: var(--color-gray-010);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -111,11 +162,77 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@layer utilities {
+  .text-xs {
+    font-size: var(--font-size-xs);
+    line-height: var(--font-size-xs-line);
+  }
+  .text-sm {
+    font-size: var(--font-size-sm);
+    line-height: var(--font-size-sm-line);
+  }
+  .text-base {
+    font-size: var(--font-size-base);
+    line-height: var(--font-size-base-line);
+  }
+  .text-lg {
+    font-size: var(--font-size-lg);
+    line-height: var(--font-size-lg-line);
+  }
+  .text-xl {
+    font-size: var(--font-size-xl);
+    line-height: var(--font-size-xl-line);
+  }
+  .text-2xl {
+    font-size: var(--font-size-2xl);
+    line-height: var(--font-size-2xl-line);
+  }
+  .text-3xl {
+    font-size: var(--font-size-3xl);
+    line-height: var(--font-size-3xl-line);
+  }
+
+  .font-light {
+    font-weight: var(--font-weight-light);
+  }
+  .font-normal {
+    font-weight: var(--font-weight-normal);
+  }
+  .font-medium {
+    font-weight: var(--font-weight-medium);
+  }
+  .font-semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+  .font-bold {
+    font-weight: var(--font-weight-bold);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .sub-gradient {
+    @apply bg-gradient-to-r from-sub-gradient-left to-sub-gradient-right;
+  }
+
+  a {
+    color: var(--color-gray-070);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-primary-030);
+  }
+
+  a:focus {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
   }
 }

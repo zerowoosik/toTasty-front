@@ -1,19 +1,27 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import { User, UserState } from '../types';
+'use client';
 
-const useUserStore = create(
-  persist<UserState>(
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import type { User, UserState } from '../types';
+
+const useUserStore = create<UserState>()(
+  persist(
     (set) => ({
       user: null,
       isLoggedIn: false,
-      logIn: (user) => set({ isLoggedIn: true, user: user as User }),
-      logOut: () => set({ isLoggedIn: false, user: null }),
+      accessToken: '',
+      logIn: (user: User) => set({ user, isLoggedIn: true }),
+      logOut: () => set({ user: null, isLoggedIn: false, accessToken: '' }),
+      setAccessToken: (token: string) => set({ accessToken: token }),
+      clearAccessToken: () => set({ accessToken: '' }),
     }),
     {
-      // Zustand의 persist 미들웨어를 사용하여 상태를 로컬 스토리지에 저장
-      name: 'user-storage', // 로컬 스토리지에 저장할 때 사용할 키
-      storage: createJSONStorage(() => localStorage), // 로컬 스토리지 사용
+      name: 'user-storage',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        user: state.user,
+        isLoggedIn: state.isLoggedIn,
+      }),
     },
   ),
 );

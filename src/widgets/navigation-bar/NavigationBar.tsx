@@ -1,9 +1,9 @@
 'use client';
 
 import { Logo, NavigationMenu, DropdownMenu, DropdownMenuTrigger } from '@/shared';
-import { NavigationTabs, LoginButton, UserDropdown } from '@/features/navigation';
-import { useUserStore, UserIcon } from '@/entities/user';
+import { useUserStore } from '@/entities/user';
 import { useShallow } from 'zustand/shallow';
+import { NavigationTabs, LoginButton, UserDropdown, UserIcon } from './ui';
 
 export default function NavigationBar() {
   const { isLoggedIn } = useUserStore(
@@ -14,7 +14,7 @@ export default function NavigationBar() {
   );
   // const isLoggedIn = true;
   return (
-    <div className="w-full bg-white sticky flex justify-center border-b border-[#E3E7EB]">
+    <div className="flex justify-center w-full sticky top-0 bg-white border-b border-gray-020 z-15">
       <div className="flex justify-between h-[75px] w-7xl items-center px-5">
         <NavigationMenu className="gap-6">
           <Logo />

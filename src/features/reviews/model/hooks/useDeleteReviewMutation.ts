@@ -3,7 +3,7 @@ import reviewKeys from '@/entities/reviews/model/review.keys';
 import { ReviewSucceedInfo } from '../types';
 import deleteReview from '../../api/deleteReview';
 
-export default function useDeleteReivewMutation(
+export default function useDeleteReviewMutation(
   reviewId: number,
 ): UseMutationResult<ReviewSucceedInfo | null, Error, void, unknown> {
   const queryClient = useQueryClient();

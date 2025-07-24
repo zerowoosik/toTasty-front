@@ -1,11 +1,14 @@
+'use client';
+
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/shared';
 import { useUserStore } from '@/entities/user';
 import Link from 'next/link';
-import router from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function UserDropdown() {
   // TODO : 마이페이지 url 수정
   const { logOut } = useUserStore();
+  const router = useRouter();
   const logout = () => {
     logOut();
     router.push('/');

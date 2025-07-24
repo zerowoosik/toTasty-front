@@ -17,12 +17,17 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
         login: 'bg-[#FEE502] shadow-sm hover:bg-[#FFD900] cursor-pointer',
+        findFilterClicked: 'bg-gray-090 text-white text-sm font-medium',
+        calendarBtn1:
+          'w-[118px] h-[40px] bg-white text-sm font-semibold text-primary border border-primary rounded-xl',
+        calendarBtn2: 'w-[118px] h-[40px] bg-primary text-sm font-semibold text-white rounded-xl',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
+        findFilterSize: 'min-w-[57px] h-[40px] rounded-xl px-4 mr-2',
       },
     },
     defaultVariants: {

@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['k.kakaocdn.net'], // 카카오 CDN
+  },
 };
 
 export default nextConfig;

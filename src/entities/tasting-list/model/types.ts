@@ -4,7 +4,7 @@ export interface TastingInfo {
   drinkTaste?: string; // 음료 맛
   drinkFlavor?: string; // 음료 향
   drinkColor?: string; // 음료 색
-  dringImgUrl?: string;
+  drinkImgUrl?: string;
 }
 
 export interface TastingList {

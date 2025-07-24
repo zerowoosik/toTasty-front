@@ -14,7 +14,7 @@ export default function NavigationBar() {
   );
   // const isLoggedIn = true;
   return (
-    <div className="w-full bg-white flex justify-center border-b-gray-030 sticky top-0 z-15">
+    <div className=" flex justify-center w-full sticky top-0 z-15 bg-white border-b border-gray-020">
       <div className="flex justify-between h-[75px] w-7xl items-center px-5">
         <NavigationMenu className="gap-6">
           <Logo />

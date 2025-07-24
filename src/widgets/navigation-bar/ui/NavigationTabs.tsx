@@ -17,7 +17,7 @@ export default function NavigationTabs() {
   function getNavTabClass(href: string) {
     // 내비게이션 탭 하이라이팅을 위한 클래스명 반환
     return clsx('text-base hover:bg-transparent focus:bg-transparent', {
-      'font-bold text-[#676DFF] focus:text-[#676DFF] hover:text-[#676DFF]':
+      'font-bold text-primary-050 focus:text-primary-050 hover:text-primary-050':
         pathname === href || pathname.startsWith(`${href}/`),
     });
   }

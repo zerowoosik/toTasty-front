@@ -3,9 +3,8 @@
 import { Button } from '@/shared/ui/Button';
 import Image from 'next/image';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 function kakaoRedirect() {
-  window.location.href = `${apiUrl}/api/v1/auth/login/redirect`;
+  window.location.href = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}`;
 }
 export default function KakaoLoginButton() {
   return (

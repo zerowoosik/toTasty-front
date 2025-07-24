@@ -6,5 +6,9 @@ export async function loginWithKakao(code: string): Promise<LoginResponse | null
     'Content-Type': 'application/json',
   };
 
-  return getApi<LoginResponse>('/api/v1/auth/login', { code }, headers);
+  return getApi<LoginResponse>(
+    process.env.NEXT_PUBLIC_KAKAO_LOGIN_URI!.toString(),
+    { code },
+    headers,
+  );
 }

@@ -1,0 +1,9 @@
+name: main
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual sync'
+        required: false
+        default: 'Manual trigger from UI'

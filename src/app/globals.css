@@ -219,7 +219,7 @@
   }
 
   .sub-gradient {
-    @apply bg-gradient-to-r from-sub-gradient-left via-sub-gradient-right;
+    @apply bg-gradient-to-r from-sub-gradient-left to-sub-gradient-right;
   }
 
   a {

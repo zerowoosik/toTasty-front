@@ -20,3 +20,5 @@ export {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from './NavigationMenu';
+
+export { Calendar, CalendarDayButton } from './Calendar';

@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { useUserStore } from '@/entities/user/index';
-import { User } from '@/entities/user/index';
+import { useUserStore, User } from '@/entities/user/index';
 
 const instances = new Map<string, AxiosInstance>();
 
@@ -26,8 +25,8 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
   instance.interceptors.response.use(
     (response) => response,
     async (error) => {
-      if (error.response?.status === 401 && !error.config._retry) {
-        error.config._retry = true;
+      if (error.response?.status === 401 && !error.config.isRetried) {
+        const originRequest = { ...error.config, isRetried: true };
 
         const reissueInstance: AxiosInstance = instances.has(apiUrl)
           ? instances.get(apiUrl)!
@@ -41,26 +40,29 @@ export default function axiosInstance(apiUrl: string | undefined): AxiosInstance
           if (response.status === 200) {
             const { accessToken } = response.data;
             useUserStore.getState().setAccessToken(accessToken);
-            error.config.headers.Authorization = `Bearer ${accessToken}`;
-            console.log('response intercepter');
-            return axios(error.config);
+            originRequest.headers.Authorization = `Bearer ${accessToken}`;
+            return await axios(originRequest);
           }
         } catch (axiosError) {
           useUserStore.getState().clearAccessToken();
           useUserStore.getState().logOut();
-          //TODO logout 관련 로직 추가 작성
+          return Promise.reject(axiosError);
+          // TODO logout 관련 로직 추가 작성
         }
       }
+
+      return Promise.reject(error);
     },
   );
 
   instance.interceptors.request.use((config) => {
-    console.log('request intercepter');
-    const accessToken = useUserStore.getState().accessToken;
+    const { accessToken } = useUserStore.getState();
+    const origin = { ...config };
+
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      origin.headers.Authorization = `Bearer ${accessToken}`;
     }
-    return config;
+    return origin;
   });
 
   instances.set(apiUrl, instance);

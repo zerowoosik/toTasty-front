@@ -3,7 +3,7 @@ name: "🐞 BUGFIX"
 about: Bug 발견 및 해결 시 작성해주세요.
 title: "[bugfix] "
 labels: 'bugfix 🐞'
-assignees: ''
+assignees: 'username'
 
 ---
 ## 버그 발생 사항

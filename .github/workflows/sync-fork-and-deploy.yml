@@ -36,7 +36,7 @@ jobs:
 
       - name: Cleanup workflows except sync workflow
         run: |
-          find .github/workflows -type f ! -name "sync-fork-and-deploy2.yml" -delete
+          find .github/workflows -type f ! -name "sync-fork-and-deploy.yml" -delete
 
       - name: Commit workflow file cleanup
         run: |

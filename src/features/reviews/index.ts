@@ -1,1 +1,1 @@
-export { default as usePostReviewMutation } from './model/hooks/usePostReivewMutation';
+export { default as usePostReviewMutation } from './model/hooks/usePostReviewMutation';

@@ -1,11 +1,16 @@
-import { TastingInfo } from '@/entities/tasting-list/model/types';
+import { TastingInfo } from '@/shared';
 
-interface ReviewContent {
+export interface ReviewContent {
   reviewId: number;
+  memberId: number;
+  memberNickname: string;
+  memberProfileImageUrl: string;
+  meetingId: number;
+  meetingTitle: string;
+  thumbnailUrl: string;
+  reviewDate: string;
   reviewRating: number;
   reviewContent: string;
-  reviewer: string;
-  reviewerImgUrl: string;
 }
 
 interface PageInfo {
@@ -22,18 +27,18 @@ export interface ReviewDetailInfo {
 }
 
 export interface ReviewList {
-  contents: ReviewContent[];
+  reviews: ReviewContent[];
   pageInfo: PageInfo;
-}
-
-export enum PageFlag {
-  MYREIVEWS,
-  MEETINGDETAIL,
 }
 
 export interface ReviewFilters {
   page: number;
   size: number;
-  pageFlag: number;
   meetingId?: number;
+}
+
+export interface MeetingReviewFilters {
+  meetingId: number;
+  currentPage: number;
+  size: number;
 }

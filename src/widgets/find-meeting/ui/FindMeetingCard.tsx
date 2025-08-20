@@ -1,72 +1,125 @@
 import Image from 'next/image';
-import { Progress } from '@/shared/ui/Progress';
-import { MeetingCardInfo } from '../model/types';
+import { Badge, Progress } from '@/shared/ui';
+import { MeetingCardInfo } from '@/entities/meetings/index';
+import clsx from 'clsx';
 
 interface MeetingCardInfoProps {
   meetingInfo: MeetingCardInfo;
+  size?: 'big' | 'small';
 }
 
-function formatDateToKorean(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  return date.toLocaleDateString('ko-KR', options);
-}
+export default function FindMeetingCard({ meetingInfo, size = 'small' }: MeetingCardInfoProps) {
+  const flexItemCenter = 'flex items-center';
+  const flexCenter = `${flexItemCenter} justify-center`;
+  const flexEnd = 'flex justify-end';
+  const textMuted = 'text-xs text-muted';
 
-export default function FindMeetingCard({ meetingInfo }: MeetingCardInfoProps) {
-  const meetingStartDate = formatDateToKorean(meetingInfo.startAt);
+  const isBig = size === 'big';
+
+  const cardWidth = isBig ? 'w-[263px]' : 'w-[228px]';
+  const cardHeight = isBig ? 'h-[333px]' : 'h-[290px]';
+
+  const imageDivWidth = isBig ? 'w-[263px]' : 'w-[228px]';
+  const imageDivHeight = isBig ? 'h-[190px]' : 'h-[163px]';
+  const imageSrc = isBig ? '/assets/icons/heart2.svg' : '/assets/icons/heart.svg';
+  const imageHeartWidth = isBig ? 24 : 18.83;
+  const imageHeartHeight = isBig ? 24 : 17.13;
+
+  const heartIconDivWidthHeight = isBig ? 'w-[48px] h-[48px]' : 'w-[40px] h-[40px]';
+
+  const tastingListButtonWidth = isBig ? 'w-[61px]' : 'w-[60px]';
+  const tastingListButtonHeight = isBig ? 'h-[22px]' : 'h-[20px]';
+  const tastingListButtonMarginRight = isBig ? 'mr-[3px]' : 'mr-1';
+  const tastingListTextSize = isBig ? 'text-sm font-bold mr-3' : 'text-xs font-bold mr-2';
+
+  const dateObj = new Date(meetingInfo.startAt);
+
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const day = dateObj.getDate();
+
+  const formattedStartAt = `${year}년 ${month}월 ${day}일`;
+
   return (
     <div
       key={meetingInfo.meetingId.toString() || 'card'}
-      className="relative w-[228px] h-[290px] border-1 border-gray-020 rounded-sm overflow-hidden"
+      className={clsx(cardWidth, cardHeight, 'border border-gray-020 rounded-sm overflow-hidden')}
     >
-      <div className="relative w-[228px] h-[163px]">
+      <div className={clsx('relative grid overflow-hidden', imageDivWidth, imageDivHeight)}>
         <Image
-          src="/assets/image/card-test-1.png"
+          src={meetingInfo.thumbnailUrl}
           alt="Meeting Card Test Image"
-          width={228}
-          height={163}
-          className="w-full h-auto object-cover"
+          // width={imageWidth}
+          // height={imageHeight}
+          fill
+          style={{ objectFit: 'cover' }}
+          className="col-start-1 row-start-1"
         />
-        <div className="absolute w-[50px] h-[20px] bg-gray-900 bg-opacity-70 flex items-center justify-center left-3 bottom-[9px] rounded-[4px]">
-          <span className="text-white text-xs font-bold">개설확정</span>
-        </div>
-        <div className="absolute w-[20.5px] h-[20.5px] flex items-center justify-center right-3.5 top-3.5">
-          <Image src="/assets/icons/heart.svg" alt="wish meeting" width={18.83} height={17.13} />
+        <Badge
+          variant={meetingInfo.status === 'closed' ? 'tertiary' : 'default'}
+          className="absolute bottom-3 left-3"
+        >
+          {meetingInfo.status === 'closed' ? '모임 종료' : '모집중'}
+        </Badge>
+        <div
+          className={clsx(
+            flexCenter,
+            heartIconDivWidthHeight,
+            'absolute top right justify-self-end',
+          )}
+        >
+          {meetingInfo.isWished ? (
+            <Image
+              src={imageSrc}
+              alt="wish meeting"
+              width={imageHeartWidth}
+              height={imageHeartHeight}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
-
-      <div className="flex ml-3 mt-3 items-center justify-between">
-        <span className="text-xs font-normal">
+      <div className={clsx(flexItemCenter, 'justify-between ml-3', isBig ? 'mt-3' : 'mt-2.5')}>
+        <span className={clsx('text-xs truncate text-ellipsis', isBig ? 'w-[120px]' : 'w-[105px]')}>
           {meetingInfo.location.address.replace(meetingInfo.location.sido, '')}
         </span>
-        <div className="flex items-center">
-          <div className="flex w-[60px] h-[20px] border rounded-xs mr-1 justify-center items-center">
-            <span className="text-xs font-medium text-gray-050">시음리스트</span>
+        <div className={clsx(flexItemCenter)}>
+          <div
+            className={clsx(
+              flexCenter,
+              tastingListButtonWidth,
+              tastingListButtonHeight,
+              'border rounded-xs',
+              tastingListButtonMarginRight,
+            )}
+          >
+            <span className="text-xs font-medium text-muted-foreground">시음리스트</span>
           </div>
-          <span className="text-xs font-bold mr-2">5개</span>
-          {/* TODO: 시음리스트 API에 필드 추가 해서 받아와야함 */}
+          <span className={tastingListTextSize}>{meetingInfo.tastingDrinkCount ?? 0}개</span>
         </div>
       </div>
-      <div className="flex mt-[1px] ml-3 text-sm font-bold items-center">
+      <div className={clsx(flexItemCenter, 'mt-[1px] ml-3 text-sm font-bold')}>
         {meetingInfo.meetingTitle}
       </div>
-      <div className="flex justify-end mt-0.5 px-2">
-        <span className="text-xs font-normal text-primary-040">
-          {meetingInfo.currentParticipants}
-        </span>
-        <span className="text-xs font-normal text-gray-030">/</span>
-        <span className="text-xs font-normal text-gray-040">{meetingInfo.maxParticipants}명</span>
+      <div className={clsx(flexEnd, 'mt-0.5', isBig ? 'px-3' : 'px-2')}>
+        <span className="text-xs text-primary">{meetingInfo.currentParticipants}</span>
+        <span className={clsx(textMuted)}>/</span>
+        <span className={clsx(textMuted)}>{meetingInfo.maxParticipants}명</span>
       </div>
-      <div className="flex items-center pl-[12px] pr-[8px] mt-1">
+      <div className={clsx(flexItemCenter, 'mt-1 px-3')}>
         <Progress value={(meetingInfo.currentParticipants / meetingInfo.maxParticipants) * 100} />
       </div>
-      <span className="text-gray-040 ml-3 mt-1 text-xs font-normal">{meetingStartDate} 출발</span>
-      <div className="flex text-gray-090 text-sm font-bold justify-end px-2">
-        {meetingInfo.participationFee.toLocaleString('ko-KR')}원
-      </div>
+      <span className={clsx(textMuted, 'ml-3', isBig ? 'mt-1.5' : 'mt-1')}>
+        {formattedStartAt} 예정
+      </span>
+      {meetingInfo.participationFee === 0 ? (
+        <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>무료</div>
+      ) : (
+        <div className={clsx(flexEnd, 'text-sm font-bold', isBig ? 'px-3' : 'px-2')}>
+          {meetingInfo.participationFee.toLocaleString('ko-KR')}원
+        </div>
+      )}
     </div>
   );
 }

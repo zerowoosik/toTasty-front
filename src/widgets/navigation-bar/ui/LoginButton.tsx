@@ -6,7 +6,7 @@ export default function LoginButton() {
     <Link href="/login">
       <Button
         variant="outline"
-        className="h-11 bg-white font-semibold text-lg text-primary hover:text-primary"
+        className="h-11 bg-background font-semibold text-lg text-primary hover:text-primary"
       >
         로그인/회원가입
       </Button>

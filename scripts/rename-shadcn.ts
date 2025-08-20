@@ -77,6 +77,10 @@ fs.readdirSync(SHARED_UI_DIR).forEach((file: string): void => {
   const ext = path.extname(file);
   const baseName = path.basename(file, ext);
 
+  if (!(ext === '.tsx' || ext === '.ts') || baseName === 'index') {
+    return;
+  }
+
   if (baseName.includes('-') || /^[a-z]/.test(baseName)) {
     const pascalName = kebabToPascal(baseName);
     const renamedFilePath = renameFile(baseName, ext, pascalName);

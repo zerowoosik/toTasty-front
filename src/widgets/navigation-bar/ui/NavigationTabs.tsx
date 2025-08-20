@@ -8,17 +8,15 @@ import { NavigationMenuList, NavigationMenuLink, NavigationMenuItem } from '@/sh
 export default function NavigationTabs() {
   const pathname = usePathname();
   const navigationMenuItems = [
-    // TODO : href url 변경
-    { title: '모임찾기', href: '/find-meeting' },
-    { title: '찜한모임', href: '/wishlist' },
-    { title: '나의 테이스팅', href: '/my-tasting' },
+    { title: '모임찾기', href: '/meetings' },
+    { title: '나의 테이스팅', href: '/my-page/tastings' },
+    { title: '위시리스트', href: '/my-page/wishlist' },
   ];
 
   function getNavTabClass(href: string) {
     // 내비게이션 탭 하이라이팅을 위한 클래스명 반환
-    return clsx('text-base hover:bg-transparent focus:bg-transparent', {
-      'font-bold text-primary-050 focus:text-primary-050 hover:text-primary-050':
-        pathname === href || pathname.startsWith(`${href}/`),
+    return clsx('text-base hover:bg-transparent focus:bg-transparent text-muted-foreground', {
+      'font-bold text-primary': pathname === href || pathname.startsWith(`${href}/`),
     });
   }
 

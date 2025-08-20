@@ -20,11 +20,11 @@ export default function FindMeetingFilterCalendar() {
           <Button
             id="filterCalendar"
             variant={selectedCalendar ? 'findFilterClicked' : 'outline'}
-            className={selectedCalendar ? 'text-white' : 'text-gray-090 outline-gray-010'}
+            className={selectedCalendar ? 'text-secondary' : 'text-foreground outline-background'}
             size="findFilterSize"
           >
             날짜 전체
-            <div className="flex w-6 h-6 items-center justify-center ml-2.5">
+            <div className="flex w-6 h-6 items-center justify-center ml-2.5 dark:invert">
               <Image
                 src={
                   selectedCalendar ? '/assets/icons/polygon-2.svg' : '/assets/icons/polygon-1.svg'
@@ -37,10 +37,10 @@ export default function FindMeetingFilterCalendar() {
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="flex flex-col w-[336px] h-[326px] overflow-hidden p-0 justify-between items-center"
+          className="flex flex-col w-[336px] overflow-hidden p-0 justify-between items-center"
           align="start"
         >
-          <div className="flex w-[250px] h-[226px] justify-center">
+          <div className="flex w-[250px] justify-center">
             <Calendar
               mode="single"
               defaultMonth={date}
@@ -54,9 +54,9 @@ export default function FindMeetingFilterCalendar() {
               classNames={{
                 week: 'flex w-full rdp-week',
                 months: 'mt-4 relative',
-                weekday: 'flex-1 text-gray-090 font-bold text-sm',
+                weekday: 'flex-1 text-foreground font-bold text-sm',
                 today: 'text-primary text-sm font-bold',
-                day: 'mx-px text-gray-080 text-sm font-medium select-none rdp-day',
+                day: 'mx-px text-foreground text-sm font-medium select-none rdp-day',
               }}
               className="rdp-week"
             />

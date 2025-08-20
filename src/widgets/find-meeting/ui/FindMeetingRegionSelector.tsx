@@ -10,6 +10,7 @@ import useFilterRegionStore from '../model/hooks/useFilterRegionStore';
 export default function FindMeetingRegionSelector() {
   const isOpen = useFilterRegionStore((state) => state.isOpen);
   const setIsOpen = useFilterRegionStore((state) => state.setIsOpen);
+  const selectedRegion = useFilterRegionStore((state) => state.selectedRegion);
 
   const handleBtnClick = (open: boolean) => {
     setIsOpen(open);
@@ -21,11 +22,11 @@ export default function FindMeetingRegionSelector() {
         <Button
           id="filterRegion"
           variant={isOpen ? 'findFilterClicked' : 'outline'}
-          className={isOpen ? 'text-white' : 'text-gray-090 outline-gray-010'}
+          className={isOpen ? 'text-secondary' : 'text-foreground outline-background'}
           size="findFilterSize"
         >
-          지역 전체
-          <div className="flex items-center justify-center">
+          {selectedRegion}
+          <div className="flex items-center justify-center dark:invert">
             <Image
               src={isOpen ? '/assets/icons/polygon-2.svg' : '/assets/icons/polygon-1.svg'}
               alt="dropdown Icon"

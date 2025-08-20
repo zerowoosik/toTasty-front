@@ -1,9 +1,18 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { MeetingFilters, MeetingList } from '../types';
+import { useInfiniteQuery, InfiniteQueryObserverResult, InfiniteData } from '@tanstack/react-query';
+import { MeetingFilters, MeetingListInfo } from '../types';
 import meetingKeys from '../meeting.keys';
 
 export default function useMeetingListQuery(
   filter: MeetingFilters,
-): UseQueryResult<MeetingList[] | null, Error> {
-  return useQuery(meetingKeys.list(filter));
+): InfiniteQueryObserverResult<InfiniteData<MeetingListInfo>> {
+  return useInfiniteQuery<MeetingListInfo>({
+    ...meetingKeys.list(filter),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.sliceInfo.hasNext) {
+        return pages.length + 1;
+      }
+      return undefined;
+    },
+  });
 }
